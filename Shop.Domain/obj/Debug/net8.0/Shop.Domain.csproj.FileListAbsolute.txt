@@ -9,3 +9,4 @@ D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Domain\obj\Debug\net8.0\Shop.D
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Domain\obj\Debug\net8.0\refint\Shop.Domain.dll
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Domain\obj\Debug\net8.0\Shop.Domain.pdb
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Domain\obj\Debug\net8.0\ref\Shop.Domain.dll
+D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Domain\obj\Debug\net8.0\Shop.Domain.sourcelink.json

@@ -17,3 +17,4 @@ D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Infrastructure\obj\Debug\net8.
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Infrastructure\obj\Debug\net8.0\Shop.Infrastructure.pdb
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Infrastructure\obj\Debug\net8.0\Shop.Infrastructure.genruntimeconfig.cache
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Infrastructure\obj\Debug\net8.0\ref\Shop.Infrastructure.dll
+D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Infrastructure\obj\Debug\net8.0\Shop.Infrastructure.sourcelink.json

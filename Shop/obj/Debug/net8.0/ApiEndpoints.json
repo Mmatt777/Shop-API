@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "Shop.Controllers.CategoriesController",
+    "Method": "GetAll",
+    "RelativePath": "categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

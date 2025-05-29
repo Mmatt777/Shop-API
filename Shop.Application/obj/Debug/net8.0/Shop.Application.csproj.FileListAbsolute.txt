@@ -13,3 +13,4 @@ D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Application\obj\Debug\net8.0\S
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Application\obj\Debug\net8.0\refint\Shop.Application.dll
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Application\obj\Debug\net8.0\Shop.Application.pdb
 D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Application\obj\Debug\net8.0\ref\Shop.Application.dll
+D:\Program Files\VisualStudio\Repo\Shop\Shop\Shop.Application\obj\Debug\net8.0\Shop.Application.sourcelink.json

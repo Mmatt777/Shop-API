@@ -1083,6 +1083,7 @@
       },
       "Shop.Application/1.0.0": {
         "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.5",
           "Shop.Domain": "1.0.0"
         },
         "runtime": {

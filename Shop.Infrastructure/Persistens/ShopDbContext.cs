@@ -4,8 +4,9 @@ using Shop.Domain.Entities;
 
 namespace Shop.Infrastructure.Persistens
 {
-    public class ShopDbContext(DbContextOptions<ShopDbContext> options) : DbContext(options)
+    public class ShopDbContext(DbContextOptions<ShopDbContext> options): DbContext(options)
     {
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Product> Products { get; set; }
