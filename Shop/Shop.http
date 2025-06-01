@@ -1,7 +1,8 @@
 @Shop_HostAddress = https://localhost:7034
 
 
-GET {}
-GET {{Shop_HostAddress}}/categories
+
+@id=1
+GET {{Shop_HostAddress}}/categories/{{id}}
 
 ###

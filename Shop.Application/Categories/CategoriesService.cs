@@ -13,5 +13,12 @@ namespace Shop.Application.Categories
             var categories = await categoriesRepository.GetAllAsync();
             return categories;
         }
+
+        public async Task<Category?> GetCategoryById(int id)
+        {
+            logger.LogInformation($"Getting category by {id}");
+            var category = await categoriesRepository.GetCategoryByIdAsync(id);
+            return category;
+        }
     }
 }

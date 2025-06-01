@@ -13,5 +13,12 @@ namespace Shop.Infrastructure.Repositories
             var categories = await dbContext.Categories.ToListAsync();
             return categories;
         }
+
+        public async Task<Category> GetCategoryByIdAsync(int id)
+        {
+            var category = await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            return category;
+
+        }
     }
 }

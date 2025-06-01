@@ -13,5 +13,15 @@ namespace Shop.Controllers
             var categories = await categoriesService.GetAllCategory();
             return Ok(categories);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoryById([FromRoute]int id)
+        {
+            var category = await categoriesService.GetCategoryById(id);
+            if (category is null)
+                return NotFound();
+
+            return Ok(category);
+        }
     }
 }
