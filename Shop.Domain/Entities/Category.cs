@@ -11,6 +11,8 @@ namespace Shop.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<Product> Products { get; set; } = new();
+        public List<Brand> Brands { get; set; } = new();
         public List<SubCategory> SubCategories { get; set; } = new();
     }   
 }

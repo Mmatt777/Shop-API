@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Shop.Domain.Entities;
+using Shop.Infrastructure.Configuration;
 
 namespace Shop.Infrastructure.Persistens
 {
@@ -10,23 +11,19 @@ namespace Shop.Infrastructure.Persistens
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>()
-                .HasMany(c => c.SubCategories)
-                .WithOne(c => c.Category)
-                .HasForeignKey(c => c.CategoryId);
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
-            modelBuilder.Entity<SubCategory>()
-                .HasOne(c => c.Category)
-                .WithMany(c => c.SubCategories)
-                .HasForeignKey(c => c.CategoryId);
-
-            modelBuilder.Entity<Product>()
-                .HasOne(c => c.SubCategory)
-                .WithMany(c => c.Products)
-                .HasForeignKey(c => c.SubCategoryId);
+            modelBuilder.Entity<Brand>()
+                .HasMany(b => b.Products)
+                .WithOne(b => b.Brand)
+                .HasForeignKey(b => b.BrandId)
+                .OnDelete(DeleteBehavior.NoAction);                     
         }
     }
 }
