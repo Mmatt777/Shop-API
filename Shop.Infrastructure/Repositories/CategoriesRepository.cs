@@ -16,7 +16,10 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task<Category> GetCategoryByIdAsync(int id)
         {
-            var category = await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            var category = await dbContext.Categories
+                .Include(c => c.SubCategories)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
             return category;
 
         }

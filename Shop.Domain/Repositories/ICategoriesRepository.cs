@@ -1,6 +1,4 @@
-﻿
-
-using Shop.Domain.Entities;
+﻿using Shop.Domain.Entities;
 
 namespace Shop.Domain.Repositories
 {

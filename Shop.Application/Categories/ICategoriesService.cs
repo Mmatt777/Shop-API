@@ -1,10 +1,11 @@
-﻿using Shop.Domain.Entities;
+﻿using Shop.Application.Categories.DTOS;
+
 
 namespace Shop.Application.Categories
 {
     public interface ICategoriesService
     {
-        Task<IEnumerable<Category>> GetAllCategory();
-        Task<Category> GetCategoryById(int id);
+        Task<IEnumerable<CategoryDTO>> GetAllCategory();
+        Task<CategoryDTO> GetCategoryById(int id);
     }
 }
