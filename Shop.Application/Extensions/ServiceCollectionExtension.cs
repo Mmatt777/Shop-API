@@ -14,6 +14,8 @@ namespace Shop.Application.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<ICategoriesService, CategoriesService>();
+
+            services.AddAutoMapper(typeof (ServiceCollectionExtension).Assembly);
         }
     }
 }

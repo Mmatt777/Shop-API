@@ -6,6 +6,6 @@ namespace Shop.Application.Categories
     public interface ICategoriesService
     {
         Task<IEnumerable<CategoryDTO>> GetAllCategory();
-        Task<CategoryDTO> GetCategoryById(int id);
+        Task<CategoryDTO> GetCategoryByIdWithsubCategory(int id);
     }
 }

@@ -15,13 +15,15 @@ namespace Shop.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategoryById([FromRoute]int id)
+        public async Task<IActionResult> GetCategoryByIdWithsubCategory([FromRoute]int id)
         {
-            var category = await categoriesService.GetCategoryById(id);
+            var category = await categoriesService.GetCategoryByIdWithsubCategory(id);
             if (category is null)
                 return NotFound();
 
             return Ok(category);
         }
+
+
     }
 }
