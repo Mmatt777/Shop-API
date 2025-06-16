@@ -1,0 +1,28 @@
+﻿using Shop.Domain.Entities;
+using Shop.Domain.Repositories;
+using Shop.Infrastructure.Persistens;
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shop.Infrastructure.Repositories
+{
+    internal class SubCategoryRepository(ShopDbContext dbContext) : ISubCategoriesRepository
+    {
+        public async Task<int> CreateSubCategory(SubCategory subCategory)
+        {
+            var categoryId = await dbContext.Categories.FindAsync(subCategory.CategoryId);
+            if(categoryId == null)
+            {
+                throw new Exception($"Category with ID {subCategory.CategoryId} does not exist.");
+            }
+
+            dbContext.SubCategories.Add(subCategory);
+            await dbContext.SaveChangesAsync();
+            return subCategory.Id;
+        }
+    }
+}

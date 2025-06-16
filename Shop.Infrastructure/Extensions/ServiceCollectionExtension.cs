@@ -22,6 +22,7 @@ namespace Shop.Infrastructure.Extensions
 
             services.AddScoped<IShopSeeder, ShopSeeder>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ISubCategoriesRepository, SubCategoryRepository>();
         }
     }
 }

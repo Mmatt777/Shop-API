@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Categories;
-using Shop.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shop.Application.SubCategories;
+
 
 namespace Shop.Application.Extensions
 {
@@ -14,6 +10,7 @@ namespace Shop.Application.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<ICategoriesService, CategoriesService>();
+            services.AddScoped<ISubCategoriesService, SubCategoriesService>();
 
             services.AddAutoMapper(typeof (ServiceCollectionExtension).Assembly);
         }

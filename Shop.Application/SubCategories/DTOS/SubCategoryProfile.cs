@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using Shop.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Shop.Application.SubCategories.DTOS
 {
@@ -12,6 +8,7 @@ namespace Shop.Application.SubCategories.DTOS
     {
         public SubCategoryProfile()
         {
+            CreateMap<CreateSubCategoryDTO, SubCategory>();
             CreateMap<SubCategory, SubCategoryDTO>();
         }
     }
