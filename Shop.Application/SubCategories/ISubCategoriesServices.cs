@@ -11,5 +11,7 @@ namespace Shop.Application.SubCategories
     public interface ISubCategoriesService
     {
         Task<int> CreateSubCategory(CreateSubCategoryDTO dto);
+
+        Task<SubCategoryDTO> GetSubCategoryById(int id);
     }
 }

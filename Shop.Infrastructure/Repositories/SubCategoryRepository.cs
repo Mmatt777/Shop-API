@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Domain.Entities;
 using Shop.Domain.Repositories;
 using Shop.Infrastructure.Persistens;
 using System;
@@ -23,6 +24,16 @@ namespace Shop.Infrastructure.Repositories
             dbContext.SubCategories.Add(subCategory);
             await dbContext.SaveChangesAsync();
             return subCategory.Id;
+        }
+
+        public async Task<SubCategory> GetSubCategoryById(int id)
+        {
+            var subCategory = await dbContext.SubCategories
+                .Include(c => c.Products)
+                .Include(c => c.Brands)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            return subCategory;
         }
     }
 }
