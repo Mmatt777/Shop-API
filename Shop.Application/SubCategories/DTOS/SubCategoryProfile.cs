@@ -8,7 +8,7 @@ namespace Shop.Application.SubCategories.DTOS
     {
         public SubCategoryProfile()
         {
-            CreateMap<CreateSubCategoryDTO, SubCategory>();
+            CreateMap<CreateSubCategoryDTO, SubCategory>();               
             CreateMap<SubCategory, SubCategoryDTO>();
         }
     }

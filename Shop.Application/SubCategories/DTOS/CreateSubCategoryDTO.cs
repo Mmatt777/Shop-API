@@ -15,5 +15,6 @@ namespace Shop.Application.SubCategories.DTOS
         //        Name = createSubCategoryDTO.Name
         //    };
         //}
+
     }
 }

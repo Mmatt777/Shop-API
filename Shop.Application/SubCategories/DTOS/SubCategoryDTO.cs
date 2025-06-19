@@ -18,7 +18,10 @@ namespace Shop.Application.SubCategories.DTOS
         //    {
         //        Id = subCategory.Id,
         //        Name = subCategory.Name,
+        //        Products = subCategory.Products.Select(ProductDTO.FromEntity).ToList(),
+        //        Brands = subCategory.Brands.Select(BrandDTO.FromEntity).ToList()
         //    };
         //}
+
     }
 }
