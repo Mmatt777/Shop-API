@@ -10,5 +10,6 @@ namespace Shop.Domain.Repositories
     public interface ISubCategoriesRepository
     {
         Task<int> CreateSubCategory(SubCategory subCategory);
+        Task<SubCategory> GetSubCategoryById(int id);
     }
 }

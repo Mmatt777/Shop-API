@@ -9,6 +9,16 @@ namespace Shop.API.Controllers
     [Route("SubCategories")]
     public class SubCategoriesController(ISubCategoriesService subCategoriesService) : ControllerBase
     {
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSubCategoryByIdWithProduts([FromRoute] int id)
+        {
+            var subCategory = await subCategoriesService.GetSubCategoryById(id);
+            if (subCategory == null)
+                return NotFound();
+
+            return Ok(subCategory);
+        }
+        
         [HttpPost]
         public async Task<IActionResult> CreateSubCategories([FromBody] CreateSubCategoryDTO createSubCategoryDTO)
         {
