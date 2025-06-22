@@ -12,17 +12,14 @@ namespace Shop.Application.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             var appAssembly = typeof(ServiceCollectionExtension).Assembly;
-            services.AddScoped<ICategoriesService, CategoriesService>();
-            services.AddScoped<ISubCategoriesService, SubCategoriesService>();
 
-            
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(appAssembly));
+           
             services.AddAutoMapper(appAssembly);
 
             services.AddValidatorsFromAssembly(appAssembly)
                 .AddFluentValidationAutoValidation();
-                
-
-
+               
         }
     }
 }

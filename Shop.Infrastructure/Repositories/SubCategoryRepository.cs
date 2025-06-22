@@ -26,7 +26,7 @@ namespace Shop.Infrastructure.Repositories
             return subCategory.Id;
         }
 
-        public async Task<SubCategory> GetSubCategoryById(int id)
+        public async Task<SubCategory> GetSubCategoryByIdAsync(int id)
         {
             var subCategory = await dbContext.SubCategories
                 .Include(c => c.Products)

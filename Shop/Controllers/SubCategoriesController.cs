@@ -1,18 +1,20 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.SubCategories;
-using Shop.Application.SubCategories.DTOS;
+using Shop.Application.SubCategories.Commands.CreateSubCategory;
+using Shop.Application.SubCategories.Queries.GetSubCategoryById;
+
 
 namespace Shop.API.Controllers
 {
     [ApiController]
     [Route("SubCategories")]
-    public class SubCategoriesController(ISubCategoriesService subCategoriesService) : ControllerBase
+    public class SubCategoriesController(IMediator mediator) : ControllerBase
     {
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSubCategoryByIdWithProduts([FromRoute] int id)
         {
-            var subCategory = await subCategoriesService.GetSubCategoryById(id);
+            var subCategory = await mediator.Send(new GetSubCategoryByIdQuery(id));
+
             if (subCategory == null)
                 return NotFound();
 
@@ -20,9 +22,9 @@ namespace Shop.API.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> CreateSubCategories([FromBody] CreateSubCategoryDTO createSubCategoryDTO)
+        public async Task<IActionResult> CreateSubCategories([FromBody] CreateSubCategoryCommnad createSubCategoryCommnad)
         {
-            var id = await subCategoriesService.CreateSubCategory(createSubCategoryDTO);
+            var id = await mediator.Send(createSubCategoryCommnad);
             return CreatedAtAction(nameof(GetSubCategoryByIdWithProduts), new {id}, null);
         }
     }

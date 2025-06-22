@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using Shop.Application.SubCategories.DTOS;
 
-namespace Shop.Application.SubCategories.Validators
+namespace Shop.Application.SubCategories.Commands.CreateSubCategory
 {
-    public class CreateSubCategoryValidator : AbstractValidator<CreateSubCategoryDTO>
+    public class CreateSubCategoryCommandValidator : AbstractValidator<CreateSubCategoryCommnad>
     {
-        public CreateSubCategoryValidator()
+        public CreateSubCategoryCommandValidator()
         {
 
             RuleFor(c => c.Name)
