@@ -1,4 +1,5 @@
 ﻿using Shop.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shop.Application.SubCategories.DTOS
 {

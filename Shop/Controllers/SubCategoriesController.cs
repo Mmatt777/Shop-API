@@ -22,8 +22,8 @@ namespace Shop.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubCategories([FromBody] CreateSubCategoryDTO createSubCategoryDTO)
         {
-            var subCategory = await subCategoriesService.CreateSubCategory(createSubCategoryDTO);
-            return CreatedAtAction(nameof(GetSubCategoryByIdWithProduts), new {subCategory}, null);
+            var id = await subCategoriesService.CreateSubCategory(createSubCategoryDTO);
+            return CreatedAtAction(nameof(GetSubCategoryByIdWithProduts), new {id}, null);
         }
     }
 }

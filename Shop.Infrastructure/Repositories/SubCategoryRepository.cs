@@ -33,7 +33,7 @@ namespace Shop.Infrastructure.Repositories
                 .Include(c => c.Brands)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
-            return subCategory;
+            return subCategory!;
         }
     }
 }

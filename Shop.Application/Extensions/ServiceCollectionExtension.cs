@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Categories;
 using Shop.Application.SubCategories;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 
 namespace Shop.Application.Extensions
@@ -9,10 +11,18 @@ namespace Shop.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
+            var appAssembly = typeof(ServiceCollectionExtension).Assembly;
             services.AddScoped<ICategoriesService, CategoriesService>();
             services.AddScoped<ISubCategoriesService, SubCategoriesService>();
 
-            services.AddAutoMapper(typeof (ServiceCollectionExtension).Assembly);
+            
+            services.AddAutoMapper(appAssembly);
+
+            services.AddValidatorsFromAssembly(appAssembly)
+                .AddFluentValidationAutoValidation();
+                
+
+
         }
     }
 }

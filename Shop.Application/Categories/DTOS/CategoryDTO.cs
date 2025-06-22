@@ -1,7 +1,6 @@
 ﻿using Shop.Application.Brands.DTOS;
 using Shop.Application.Products.DTOS;
 using Shop.Application.SubCategories.DTOS;
-using Shop.Domain.Entities;
 
 namespace Shop.Application.Categories.DTOS
 {

@@ -20,7 +20,7 @@ namespace Shop.Infrastructure.Repositories
                 .Include(c => c.SubCategories)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
-            return category;
+            return category!;
 
         }
     }

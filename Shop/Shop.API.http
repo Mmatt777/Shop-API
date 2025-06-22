@@ -1,0 +1,10 @@
+﻿@Shop.API_HostAddress = https://localhost:7034
+
+POST {{Shop.API_HostAddress}}/SubCategories
+Content-Type: application/json
+{
+   "name": "",
+  "categoryId": 10
+}
+
+###
