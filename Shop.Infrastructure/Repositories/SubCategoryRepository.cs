@@ -26,6 +26,12 @@ namespace Shop.Infrastructure.Repositories
             return subCategory.Id;
         }
 
+        public async Task Delete(SubCategory subCategory)
+        {
+            dbContext.Remove(subCategory);
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task<SubCategory> GetSubCategoryByIdAsync(int id)
         {
             var subCategory = await dbContext.SubCategories

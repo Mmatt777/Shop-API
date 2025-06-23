@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.SubCategories.Commands.CreateSubCategory;
+using Shop.Application.SubCategories.Commands.DeleteSubCategory;
 using Shop.Application.SubCategories.Queries.GetSubCategoryById;
 
 
@@ -19,6 +20,17 @@ namespace Shop.API.Controllers
                 return NotFound();
 
             return Ok(subCategory);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSubCategory([FromRoute] int id)
+        {
+            var isDeleted = await mediator.Send(new DeleteSubCategoryCommand(id));
+
+            if (isDeleted)
+                return NoContent();
+
+            return NotFound();
         }
         
         [HttpPost]

@@ -11,5 +11,6 @@ namespace Shop.Domain.Repositories
     {
         Task<int> CreateSubCategory(SubCategory subCategory);
         Task<SubCategory> GetSubCategoryByIdAsync(int id);
+        Task Delete(SubCategory subCategory);
     }
 }
