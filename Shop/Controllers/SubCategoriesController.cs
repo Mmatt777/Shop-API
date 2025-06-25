@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.SubCategories.Commands.CreateSubCategory;
 using Shop.Application.SubCategories.Commands.DeleteSubCategory;
+using Shop.Application.SubCategories.Commands.UpdateSubCategory;
 using Shop.Application.SubCategories.Queries.GetSubCategoryById;
 
 
@@ -22,6 +23,18 @@ namespace Shop.API.Controllers
             return Ok(subCategory);
         }
 
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateSubCategory([FromRoute] int id, UpdateSubCategoryCommand command)
+        {
+            command.Id = id;
+            var isUpdated = await mediator.Send(command);
+
+            if (isUpdated)
+                return NoContent();
+
+            return NotFound();
+        }
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSubCategory([FromRoute] int id)
         {

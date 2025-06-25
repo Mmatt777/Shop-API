@@ -3,7 +3,17 @@
 POST {{Shop.API_HostAddress}}/SubCategories
 Content-Type: application/json
 {
-   "name": "",
+   
+}
+
+###
+
+PATCH {{Shop.API_HostAddress}}/SubCategories/30
+Content-Type: application/json
+
+{
+  "id" : 30,
+  "name": "Test000",
   "categoryId": 10
 }
 

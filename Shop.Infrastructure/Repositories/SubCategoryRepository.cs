@@ -41,5 +41,7 @@ namespace Shop.Infrastructure.Repositories
 
             return subCategory!;
         }
+
+        public async Task SaveUpdate() => await dbContext.SaveChangesAsync();
     }
 }

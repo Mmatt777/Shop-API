@@ -14,7 +14,7 @@ namespace Shop.Infrastructure.Repositories
             return categories;
         }
 
-        public async Task<Category> GetCategoryByIdWithsubCategoryAsync(int id)
+        public async Task<Category?> GetCategoryByIdWithsubCategoryAsync(int id)
         {
             var category = await dbContext.Categories
                 .Include(c => c.SubCategories)
