@@ -10,8 +10,8 @@ namespace Shop.Application.SubCategories.DTOS
     {
         public SubCategoryProfile()
         {
-            CreateMap<UpdateSubCategoryCommand, SubCategory>();
-            CreateMap<CreateSubCategoryCommnad, SubCategory>();               
+            CreateMap<UpdateSubCategoryForCategoryCommand, SubCategory>();
+            CreateMap<CreateSubCategoryForCategoryCommand, SubCategory>();               
             CreateMap<SubCategory, SubCategoryDTO>();
         }
     }

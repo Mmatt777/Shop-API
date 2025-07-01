@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.SubCategories.Commands.UpdateSubCategory
 {
-    public class UpdateSubCategoryCommandValidator : AbstractValidator<UpdateSubCategoryCommand>
+    public class UpdateSubCategoryForCategoryCommandValidator : AbstractValidator<UpdateSubCategoryForCategoryCommand>
     {
-        public UpdateSubCategoryCommandValidator()
+        public UpdateSubCategoryForCategoryCommandValidator()
         {
             RuleFor(c => c.Name)
+                .NotEmpty()
                 .Length(3, 99);
         }
     }

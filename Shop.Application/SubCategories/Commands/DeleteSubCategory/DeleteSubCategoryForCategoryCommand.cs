@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.SubCategories.Commands.DeleteSubCategory
 {
-    public record class DeleteSubCategoryCommand(int id) : IRequest<bool>
+    public record class DeleteSubCategoryForCategoryCommand(int categoryId, int subCategoryId) : IRequest
     {
     }
 }

@@ -18,7 +18,9 @@ namespace Shop.Infrastructure.Extensions
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var conString = configuration.GetConnectionString("ShopDb");
-            services.AddDbContext<ShopDbContext>(options => options.UseSqlServer(conString));
+            services.AddDbContext<ShopDbContext>(options => options
+            .UseSqlServer(conString)
+            .EnableSensitiveDataLogging());
 
             services.AddScoped<IShopSeeder, ShopSeeder>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();

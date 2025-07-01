@@ -23,7 +23,7 @@ namespace Shop.Application.Categories.Queries.GetAllCategories
 
             //var categoryDTO = categories.Select(CategoryDTO.FromEntity); // Manual mapping is used here
 
-            return categoryDTO!;
+            return categoryDTO;
         }
     }
 }

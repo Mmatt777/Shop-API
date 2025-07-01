@@ -3,54 +3,64 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Application.SubCategories.Commands.CreateSubCategory;
 using Shop.Application.SubCategories.Commands.DeleteSubCategory;
 using Shop.Application.SubCategories.Commands.UpdateSubCategory;
+using Shop.Application.SubCategories.DTOS;
+using Shop.Application.SubCategories.Queries.GetAllSubcategoriesByIdForCategory;
 using Shop.Application.SubCategories.Queries.GetSubCategoryById;
 
 
 namespace Shop.API.Controllers
 {
     [ApiController]
-    [Route("SubCategories")]
+    [Route("api/category/{categoryId}/subcategories")]
     public class SubCategoriesController(IMediator mediator) : ControllerBase
     {
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetSubCategoryByIdWithProduts([FromRoute] int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SubCategoryDTO>>> GetAllSubcategoriesForCategory([FromRoute] int categoryId)
         {
-            var subCategory = await mediator.Send(new GetSubCategoryByIdQuery(id));
+            var subCategory = await mediator.Send(new GetSubCategoriesForCategoryQuery(categoryId));
 
-            if (subCategory == null)
-                return NotFound();
+            return Ok(subCategory);
+        }
+        
+        [HttpGet("{subCategoryId}")]
+        public async Task<ActionResult<SubCategoryDTO>> GetSubcategoryByIdForCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId)
+        {
+            var subCategory = await mediator.Send(new GetSubcategoryByIdForCategoryQuery(categoryId, subCategoryId));
 
             return Ok(subCategory);
         }
 
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateSubCategory([FromRoute] int id, UpdateSubCategoryCommand command)
-        {
-            command.Id = id;
-            var isUpdated = await mediator.Send(command);
-
-            if (isUpdated)
-                return NoContent();
-
-            return NotFound();
-        }
-        
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSubCategory([FromRoute] int id)
-        {
-            var isDeleted = await mediator.Send(new DeleteSubCategoryCommand(id));
-
-            if (isDeleted)
-                return NoContent();
-
-            return NotFound();
-        }
-        
         [HttpPost]
-        public async Task<IActionResult> CreateSubCategories([FromBody] CreateSubCategoryCommnad createSubCategoryCommnad)
+        public async Task<IActionResult> CreateSubCategories([FromRoute] int categoryId, CreateSubCategoryForCategoryCommand createSubCategoryCommnad)
         {
-            var id = await mediator.Send(createSubCategoryCommnad);
-            return CreatedAtAction(nameof(GetSubCategoryByIdWithProduts), new {id}, null);
+            createSubCategoryCommnad.CategoryId = categoryId;
+
+            var subcategoryId = await mediator.Send(createSubCategoryCommnad);
+            return CreatedAtAction(nameof(GetSubcategoryByIdForCategory), new {categoryId, subcategoryId}, null);
         }
+
+        [HttpPatch("{subCategoryId}")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateSubCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId, UpdateSubCategoryForCategoryCommand command)
+        {
+            command.CategoryId = categoryId;
+            command.SubCategoryId = subCategoryId;
+            await mediator.Send(command);
+
+                return NoContent();
+        }
+
+        [HttpDelete("{subCategoryId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteSubCategoryForCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId)
+        {
+            await mediator.Send(new DeleteSubCategoryForCategoryCommand(categoryId, subCategoryId));
+            
+                return NoContent();
+        }
+        
+        
     }
 }

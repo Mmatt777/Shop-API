@@ -15,12 +15,6 @@ namespace Shop.Infrastructure.Repositories
     {
         public async Task<int> CreateSubCategory(SubCategory subCategory)
         {
-            var categoryId = await dbContext.Categories.FindAsync(subCategory.CategoryId);
-            if(categoryId == null)
-            {
-                throw new Exception($"Category with ID {subCategory.CategoryId} does not exist.");
-            }
-
             dbContext.SubCategories.Add(subCategory);
             await dbContext.SaveChangesAsync();
             return subCategory.Id;
