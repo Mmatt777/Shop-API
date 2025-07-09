@@ -1,15 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Domain.Entities;
 using Shop.Domain.Repositories;
 using Shop.Infrastructure.Persistens;
 using Shop.Infrastructure.Repositories;
 using Shop.Infrastructure.Seeders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Extensions
 {
@@ -21,6 +17,9 @@ namespace Shop.Infrastructure.Extensions
             services.AddDbContext<ShopDbContext>(options => options
             .UseSqlServer(conString)
             .EnableSensitiveDataLogging());
+
+            services.AddIdentityApiEndpoints<User>()
+                .AddEntityFrameworkStores<ShopDbContext>();
 
             services.AddScoped<IShopSeeder, ShopSeeder>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Categories.DTOS;
 using Shop.Application.Categories.Queries.GetAllCategories;
@@ -10,9 +11,11 @@ namespace Shop.Controllers
 {
     [ApiController]
     [Route("api/categories")]
+    [Authorize]
     public class CategoriesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAll()
         {
             var categories = await mediator.Send(new GetAllCategoriesQuery());

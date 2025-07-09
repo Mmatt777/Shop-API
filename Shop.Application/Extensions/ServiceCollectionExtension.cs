@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Shop.Application.Categories;
-using Shop.Application.SubCategories;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
+using Shop.Application.Users;
 
 
 namespace Shop.Application.Extensions
@@ -19,6 +18,10 @@ namespace Shop.Application.Extensions
 
             services.AddValidatorsFromAssembly(appAssembly)
                 .AddFluentValidationAutoValidation();
+
+            services.AddScoped<IUserContext, UserContext>();
+
+            services.AddHttpContextAccessor();
                
         }
     }

@@ -1,6 +1,8 @@
 ﻿@Shop.API_HostAddress = https://localhost:7034
 
-POST {{Shop.API_HostAddress}}/SubCategories
+@Token = CfDJ8De_iGNtXihIha8ekEdHZno7oq2po0E-gRTqIxphbAVKcM4VqvQw6n998H_h74MbiSbJwwciXn1rIYk8XkCN3Ly5HmO2kIkV_SAhKh8W3dxP8xbiqoRJU24vH37vQwAms-aGofYzgbbxnUKqCmHQY_qUTGvJbl-Te8xLafUf4LKaaximtf0kkF5Kk0ICGxL5ibynJWd9g0ARHg8zyLdUe2oGAzJrot57lASo9uVGNGHxWREguAsMO5FJhcu1o0pEloc8NOMstabibMpOcs4sXIz0fETEehkLlZDOgR8oG-NmCkzKdbY4BvKYSEDmJnELmX6daCtkRXtgtfKvGeGF9xRo0z0jk8OawUK5j1yWylffvfE2sNN2EFGcKEIX40tCVWf0FGWpgyvzZWdKDnATy9r0CdusvYj9_d2EkyKin5u_6tariT348qwl6lVescvFlXtvSDKIMrpZawXgnhIY05gk2fcdUhB_OZtDX38b68TvTiD3ZKQj89uELEyaHqXyJhHnnkGlu7sSxM6xh0TFUq7GaNg_7c4spn5VOc9rmi6y17SG1P5xfWsQUNcfoolq2P4sHQjAruGcqVI_RAmsW0C7J1DwEQcCfIWQgbfhYJpj6KDO0YICDFrhTr8oA042ZQWO3cNmiWuwLjdzAr7lZdGRMlLm4fRYtkzV7yJ-XGFXi3x0mEdnDiupIZmx8MfYEBy4rzEGk47ZlEy-vTRK84U
+
+POST {{Shop.API_HostAddress}}/api/SubCategories
 Content-Type: application/json
 {
    
@@ -8,13 +10,31 @@ Content-Type: application/json
 
 ###
 
-PATCH {{Shop.API_HostAddress}}/SubCategories/30
+POST {{Shop.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-  "id" : 30,
-  "name": "Test000",
-  "categoryId": 10
+  "email": "auTest01@gmail.com",
+  "password": "Test01!"
 }
 
+###
+
+POST {{Shop.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email": "auTest01@gmail.com",
+  "password": "Test01!"
+}
+
+###
+
+GET {{Shop.API_HostAddress}}/api/categories
+
+###
+
+@id=11
+GET {{Shop.API_HostAddress}}/api/categories/{{id}}
+Authorization: Bearer {{Token}}
 ###

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Shop.Domain.Entities;
 using Shop.Infrastructure.Configuration;
 
 namespace Shop.Infrastructure.Persistens
 {
-    public class ShopDbContext(DbContextOptions<ShopDbContext> options): DbContext(options)
+    public class ShopDbContext(DbContextOptions<ShopDbContext> options): IdentityDbContext<User>(options)
     {
 
         public DbSet<Category> Categories { get; set; }
@@ -15,6 +16,7 @@ namespace Shop.Infrastructure.Persistens
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());

@@ -1,0 +1,8 @@
+﻿
+namespace Shop.Application.Users
+{
+    public record class CurrentUser(string Id, string Email, IEnumerable<string> Roles)
+    {
+        public bool isInRole(string role) => Roles.Contains(role);
+    }
+}
