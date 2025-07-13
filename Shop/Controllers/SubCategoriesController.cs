@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.SubCategories.Commands.CreateSubCategory;
 using Shop.Application.SubCategories.Commands.DeleteSubCategory;
@@ -11,10 +12,12 @@ using Shop.Application.SubCategories.Queries.GetSubCategoryById;
 namespace Shop.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/category/{categoryId}/subcategories")]
     public class SubCategoriesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<SubCategoryDTO>>> GetAllSubcategoriesForCategory([FromRoute] int categoryId)
         {
             var subCategory = await mediator.Send(new GetSubCategoriesForCategoryQuery(categoryId));
@@ -23,6 +26,7 @@ namespace Shop.API.Controllers
         }
         
         [HttpGet("{subCategoryId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<SubCategoryDTO>> GetSubcategoryByIdForCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId)
         {
             var subCategory = await mediator.Send(new GetSubcategoryByIdForCategoryQuery(categoryId, subCategoryId));

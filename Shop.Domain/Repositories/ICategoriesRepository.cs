@@ -6,5 +6,7 @@ namespace Shop.Domain.Repositories
     {
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category> GetCategoryByIdWithsubCategoryAsync(int id);
+        Task<Category> GetCategoryByIdWithBrandsAsync(int id);
+        Task<Category> GetCategoryByIdWithSubCategoryIdWithBrands(int id);
     }
 }

@@ -11,11 +11,9 @@ namespace Shop.Controllers
 {
     [ApiController]
     [Route("api/categories")]
-    [Authorize]
     public class CategoriesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAll()
         {
             var categories = await mediator.Send(new GetAllCategoriesQuery());

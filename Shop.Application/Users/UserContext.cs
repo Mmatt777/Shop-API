@@ -8,11 +8,11 @@ namespace Shop.Application.Users
         CurrentUser? GetCurrentUser();
     }
 
-    public class UserContext(IHttpContextAccessor httpContextAccesor) : IUserContext
+    public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {
         public CurrentUser? GetCurrentUser()
         {
-            var user = httpContextAccesor.HttpContext!.User;
+            var user = httpContextAccessor.HttpContext!.User;
 
             if (user == null)
             {
@@ -26,9 +26,9 @@ namespace Shop.Application.Users
 
             var userId = user.FindFirst(u => u.Type == ClaimTypes.NameIdentifier)!.Value;
             var email = user.FindFirst(u => u.Type == ClaimTypes.Email)!.Value;
-            var roles = user.Claims.Where(u => u.Type == ClaimTypes.Role).Select(u => u.Value);
+            var role = user.Claims.Where(u => u.Type == ClaimTypes.Role).Select(u => u.Value);
 
-            return new CurrentUser(userId, email, roles);
+            return new CurrentUser(userId, email, role);
         }
     }
 }
