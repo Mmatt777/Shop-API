@@ -15,7 +15,7 @@ namespace Shop.Infrastructure.Migrations
                 name: "Country",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: false,
+                nullable: true,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<DateOnly>(

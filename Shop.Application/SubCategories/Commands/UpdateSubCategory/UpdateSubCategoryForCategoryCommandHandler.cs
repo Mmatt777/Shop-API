@@ -4,12 +4,15 @@ using Microsoft.Extensions.Logging;
 using Shop.Domain.Entities;
 using Shop.Domain.Exceptions;
 using Shop.Domain.Repositories;
+using Shop.Infrastructure.Authorization.Services;
+using Shop.Infrastructure.Authorization;
 
 namespace Shop.Application.SubCategories.Commands.UpdateSubCategory
 {
     public class UpdateSubCategoryForCategoryCommandHandler(ILogger<UpdateSubCategoryForCategoryCommandHandler> logger,
         ICategoriesRepository categoriesRepository,
         ISubCategoriesRepository subCategoriesRepository,
+        IShopAuthorizationService shopAuthorizationService,
         IMapper mapper) 
         : IRequestHandler<UpdateSubCategoryForCategoryCommand>
     {
@@ -24,6 +27,9 @@ namespace Shop.Application.SubCategories.Commands.UpdateSubCategory
             var subCategory = category.SubCategories.FirstOrDefault(s => s.Id == request.SubCategoryId);
             if (subCategory == null) throw new NotFoundException(nameof(SubCategory), request.SubCategoryId.ToString());
 
+
+            if (!shopAuthorizationService.IsAuthorize(ResourceOperation.Update))
+                throw new ForbidException();
             //subCategory.Name = request.Name;
 
             mapper.Map(request, subCategory);

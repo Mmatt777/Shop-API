@@ -1,7 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Identity;
+using Shop.Domain.Constants;
 using Shop.Domain.Entities;
 using Shop.Infrastructure.Persistens;
-using System.Collections.Generic;
 
 
 namespace Shop.Infrastructure.Seeders
@@ -11,6 +11,7 @@ namespace Shop.Infrastructure.Seeders
         public async Task Seed()
         {
             if (await dbContext.Database.CanConnectAsync())
+            {
                 if (!dbContext.Categories.Any())
                 {
                     var categories = SetCategory().ToList();
@@ -28,6 +29,26 @@ namespace Shop.Infrastructure.Seeders
                     await dbContext.SaveChangesAsync();
                     await transaction.CommitAsync();
                 }
+
+                if (!dbContext.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    dbContext.Roles.AddRange(roles);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+        }
+
+        private IEnumerable<IdentityRole> GetRoles()
+        {
+            List<IdentityRole> roles =
+            [
+                new (IdentityRoles.Admin) { NormalizedName = IdentityRoles.Admin.ToUpper() },
+                new (IdentityRoles.Moderator) { NormalizedName = IdentityRoles.Moderator.ToUpper() },
+                new (IdentityRoles.User) { NormalizedName = IdentityRoles.User.ToUpper() }
+
+            ];
+            return roles;
         }
 
         public List<Category> SetCategory()

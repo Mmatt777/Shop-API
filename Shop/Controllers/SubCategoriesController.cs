@@ -7,6 +7,8 @@ using Shop.Application.SubCategories.Commands.UpdateSubCategory;
 using Shop.Application.SubCategories.DTOS;
 using Shop.Application.SubCategories.Queries.GetAllSubcategoriesByIdForCategory;
 using Shop.Application.SubCategories.Queries.GetSubCategoryById;
+using Shop.Domain.Constants;
+using Shop.Infrastructure.Authorization;
 
 
 namespace Shop.API.Controllers
@@ -26,7 +28,8 @@ namespace Shop.API.Controllers
         }
         
         [HttpGet("{subCategoryId}")]
-        [AllowAnonymous]
+        [Authorize(Policy = PolitycyNames.HasCountry)]
+        //[AllowAnonymous]
         public async Task<ActionResult<SubCategoryDTO>> GetSubcategoryByIdForCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId)
         {
             var subCategory = await mediator.Send(new GetSubcategoryByIdForCategoryQuery(categoryId, subCategoryId));
@@ -35,17 +38,18 @@ namespace Shop.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = IdentityRoles.Admin)]
         public async Task<IActionResult> CreateSubCategories([FromRoute] int categoryId, CreateSubCategoryForCategoryCommand createSubCategoryCommnad)
         {
             createSubCategoryCommnad.CategoryId = categoryId;
-
             var subcategoryId = await mediator.Send(createSubCategoryCommnad);
             return CreatedAtAction(nameof(GetSubcategoryByIdForCategory), new {categoryId, subcategoryId}, null);
         }
 
         [HttpPatch("{subCategoryId}")]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = IdentityRoles.Admin)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateSubCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId, UpdateSubCategoryForCategoryCommand command)
         {
             command.CategoryId = categoryId;

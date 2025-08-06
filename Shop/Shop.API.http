@@ -1,6 +1,7 @@
 ﻿@Shop.API_HostAddress = https://localhost:7034
 
-@Token = CfDJ8De_iGNtXihIha8ekEdHZno7oq2po0E-gRTqIxphbAVKcM4VqvQw6n998H_h74MbiSbJwwciXn1rIYk8XkCN3Ly5HmO2kIkV_SAhKh8W3dxP8xbiqoRJU24vH37vQwAms-aGofYzgbbxnUKqCmHQY_qUTGvJbl-Te8xLafUf4LKaaximtf0kkF5Kk0ICGxL5ibynJWd9g0ARHg8zyLdUe2oGAzJrot57lASo9uVGNGHxWREguAsMO5FJhcu1o0pEloc8NOMstabibMpOcs4sXIz0fETEehkLlZDOgR8oG-NmCkzKdbY4BvKYSEDmJnELmX6daCtkRXtgtfKvGeGF9xRo0z0jk8OawUK5j1yWylffvfE2sNN2EFGcKEIX40tCVWf0FGWpgyvzZWdKDnATy9r0CdusvYj9_d2EkyKin5u_6tariT348qwl6lVescvFlXtvSDKIMrpZawXgnhIY05gk2fcdUhB_OZtDX38b68TvTiD3ZKQj89uELEyaHqXyJhHnnkGlu7sSxM6xh0TFUq7GaNg_7c4spn5VOc9rmi6y17SG1P5xfWsQUNcfoolq2P4sHQjAruGcqVI_RAmsW0C7J1DwEQcCfIWQgbfhYJpj6KDO0YICDFrhTr8oA042ZQWO3cNmiWuwLjdzAr7lZdGRMlLm4fRYtkzV7yJ-XGFXi3x0mEdnDiupIZmx8MfYEBy4rzEGk47ZlEy-vTRK84U
+@Token = "CfDJ8De_iGNtXihIha8ekEdHZnojmEqXFe7qD5hVSamiVEjPpDwPiCQ4x9__2sEbxDobCF9BExbSp-p88ZqvKabyZrVmJi-KySKZfJlPmV9EE2ldiCudNm4XEhFrznROp8BuNu5BAGbD153qZAhBZXvWA4gpKEH0RUOShQQ9R0DobyP2i7LpvyPlw77pU8kZe2HPUXL5D992IufIguu94i-dUtw_CS6MYVRlbtHWMK56uLIZ-J36vBtUzPetU6kh-qhzYXAYcM1NgV1tMQWsRuGBWONpstU5MlZYcshCG6RGPFna0DaGu4vAkP7YOw7bHkxqe8gFGQrHOcsD9RQA8ueAycRscFJ9aItLyL9lLOfIH9HWzEfD5C5DuKEnoLFkNvs7xN85Y7Z5FVM7FJG_jXRfv0zC9WyPTny34hLrl2LSZcDMp_dRNhKVzFzGxvBwEPasggDw5c5S2G8dg80A_ubA-X_V5Uz6nyNqG-2WLH6iRipCDA45a2SYy-tqX4N0scITO_b7vil20o-Ep052GreKq6_UgvOZeB_2cXIjXjjrFift3R27EU5F-cQI8Mv-wxi0cAxG7IdcbtsFDoybOfJ5gPYP_GIYwWeyJ90CarUraruWYgQkWHfPfSzSIKxqmFq404SgdFNOxQILnh-z8bNpKbZY82tvqflTDQ1KF-rImW_Q-TNSamFIB6ynWVpfSqIDfbHwWjTOBa-X9xI8RZJl3xDn_aj5xcVTQdXUCKr_5FdYZKeybExWiOOvhhCofDASTE-oYFO2gYWSSKYWGRXbECHYAnfW6kc12tnGNxwHAeQB"
+
 
 POST {{Shop.API_HostAddress}}/api/SubCategories
 Content-Type: application/json
@@ -14,8 +15,8 @@ POST {{Shop.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-  "email": "auTest01@gmail.com",
-  "password": "Test01!"
+  "email": "moderator123@gmail.com",
+  "password": "Moderator123#"
 }
 
 ###
@@ -24,8 +25,8 @@ POST {{Shop.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-  "email": "auTest01@gmail.com",
-  "password": "Test01!"
+  "email": "user123@gmail.com",
+  "password": "User123#"
 }
 
 ###
@@ -37,4 +38,16 @@ GET {{Shop.API_HostAddress}}/api/categories
 @id=11
 GET {{Shop.API_HostAddress}}/api/categories/{{id}}
 Authorization: Bearer {{Token}}
+###
+
+@categoryId = 10
+POST {{Shop.API_HostAddress}}/api/category/{categoryId}/subcategories
+Authorization: Bearer {{Token}}
+Content-Type: application/json
+
+{
+    "name": "TEST20",
+    "categoryId": 10
+}
+
 ###
