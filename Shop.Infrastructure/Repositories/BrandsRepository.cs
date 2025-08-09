@@ -19,6 +19,24 @@ namespace Shop.Infrastructure.Repositories
             var brands = await dbContext.Brands.ToListAsync();
             return brands;
         }
-             
+
+        public async Task<Category> GetCategoryByIdWithBrandsAsync(int id)
+        {
+            var category = await dbContext.Categories
+                .Include(c => c.Brands)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            return category;
+        }
+
+        public async Task<Category> GetCategoryByIdWithSubCategoryIdWithBrands(int id)
+        {
+            var category = await dbContext.Categories
+                    .Include(c => c.SubCategories)
+                    .Include(sc => sc.Brands)
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+            return category;
+        }
     }
 }

@@ -10,7 +10,8 @@ using Shop.Domain.Repositories;
 namespace Shop.Application.SubCategories.Queries.GetAllSubcategoriesByIdForCategory
 {
     public class GetSubcategoryByIdForCategoryQueryHandler(ILogger<GetSubcategoryByIdForCategoryQueryHandler> logger, 
-        ICategoriesRepository categoriesRepository, IMapper mapper)
+        ICategoriesRepository categoriesRepository, 
+        IMapper mapper)
         : IRequestHandler<GetSubcategoryByIdForCategoryQuery, SubCategoryDTO>
     {
         public async Task<SubCategoryDTO> Handle(GetSubcategoryByIdForCategoryQuery request, CancellationToken cancellationToken)
@@ -23,6 +24,7 @@ namespace Shop.Application.SubCategories.Queries.GetAllSubcategoriesByIdForCateg
 
             var subcategory = category.SubCategories.FirstOrDefault(s => s.Id == request.subCategoryId);
             if (category == null) throw new NotFoundException(nameof(SubCategory), request.subCategoryId.ToString());
+
 
             var result = mapper.Map<SubCategoryDTO>(subcategory);
 

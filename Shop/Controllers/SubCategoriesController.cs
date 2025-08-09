@@ -29,7 +29,7 @@ namespace Shop.API.Controllers
         
         [HttpGet("{subCategoryId}")]
         [Authorize(Policy = PolitycyNames.HasCountry)]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ActionResult<SubCategoryDTO>> GetSubcategoryByIdForCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId)
         {
             var subCategory = await mediator.Send(new GetSubcategoryByIdForCategoryQuery(categoryId, subCategoryId));
@@ -60,6 +60,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpDelete("{subCategoryId}")]
+        [Authorize(Roles = IdentityRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteSubCategoryForCategory([FromRoute] int categoryId, [FromRoute] int subCategoryId)

@@ -10,5 +10,7 @@ namespace Shop.Domain.Repositories
     public interface IBrandsRepository
     {
         Task<IEnumerable<Brand>> GetAllBrandsAsync();
+        Task<Category> GetCategoryByIdWithBrandsAsync(int id);
+        Task<Category> GetCategoryByIdWithSubCategoryIdWithBrands(int id);
     }
 }

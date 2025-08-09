@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 namespace Shop.Application.Brands.Queries.GetAllBrandsForCategory
 {
     class GetAllBrandsForCategoryQueryHandler(ILogger<GetAllBrandsForCategoryQueryHandler> logger,
-        ICategoriesRepository categoriesRepository,
+        IBrandsRepository brandsRepository,
         IMapper mapper) 
         : IRequestHandler<GetAllBrandsForCategoryQuery, IEnumerable<BrandDTO>>
     {
         public async Task<IEnumerable<BrandDTO>> Handle(GetAllBrandsForCategoryQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Geting all brands for category: {CategoryId}", request.categoryId);
-            var category = await categoriesRepository.GetCategoryByIdWithBrandsAsync(request.categoryId);
+            var category = await brandsRepository.GetCategoryByIdWithBrandsAsync(request.categoryId);
             if (category == null)
                 throw new NotFoundException(nameof(Category), request.categoryId.ToString());
 

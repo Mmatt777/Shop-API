@@ -10,7 +10,8 @@ using Shop.Domain.Repositories;
 namespace Shop.Application.Categories.Queries.GetCategoryByIdWithsubCategory
 {
     public class GetCategoryByIdWithsubCategoryQueryHandler(ILogger<GetCategoryByIdWithsubCategoryQueryHandler> logger,
-        IMapper mapper, ICategoriesRepository categoriesRepository) 
+        IMapper mapper, 
+        ICategoriesRepository categoriesRepository) 
         : IRequestHandler<GetCategoryByIdWithsubCategoryQuery, CategoryDTO>
     {
         public async Task<CategoryDTO> Handle(GetCategoryByIdWithsubCategoryQuery request, CancellationToken cancellationToken)

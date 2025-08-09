@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Brands.DTOS;
 using Shop.Application.Brands.Queries.GetAllBrandsForCategory;
 using Shop.Application.Brands.Queries.GetAllBrandsForSubcategoryWithCategory;
-using Shop.Infrastructure.Authorization;
 
 namespace Shop.API.Controllers
 {
@@ -13,14 +12,15 @@ namespace Shop.API.Controllers
     [Route("api/category/{categoryId}/")]
     public class BrandsController(IMediator mediator) : ControllerBase
     {
+        [AllowAnonymous]
         [HttpGet("brands")]
-        [Authorize(Policy = PolitycyNames.Over18YearsOld)]
         public async Task<ActionResult<IEnumerable<BrandDTO>>> GetAllBrandsForCategory([FromRoute] int categoryId)
         {
             var brands = await mediator.Send(new GetAllBrandsForCategoryQuery(categoryId));
             return Ok(brands);
         }
 
+        [AllowAnonymous]
         [HttpGet("subcategory/{subcategoryId}/brands")]
         public async Task<ActionResult<IEnumerable<BrandDTO>>> GetAllBrandsForSubcategoryWithCategory([FromRoute] int categoryId, [FromRoute] int subcategoryId)
         {

@@ -9,7 +9,7 @@ using Shop.Domain.Repositories;
 namespace Shop.Application.Brands.Queries.GetAllBrandsForSubcategoryWithCategory
 {
     public class GetAllBrandsForSubcategoryWithCategoryQueryHandler(ILogger<GetAllBrandsForSubcategoryWithCategoryQuery> logger,
-        ICategoriesRepository categoriesRepository,
+        IBrandsRepository brandsRepository,
         IMapper mapper)
         : IRequestHandler<GetAllBrandsForSubcategoryWithCategoryQuery, IEnumerable<BrandDTO>>
     {
@@ -17,7 +17,7 @@ namespace Shop.Application.Brands.Queries.GetAllBrandsForSubcategoryWithCategory
         {
             logger.LogInformation("Get all brands for category: {cateogryId}, with {@subcategoryId}", request.categoryId, request.subcategoryId);
 
-            var category = await categoriesRepository.GetCategoryByIdWithSubCategoryIdWithBrands(request.categoryId);
+            var category = await brandsRepository.GetCategoryByIdWithSubCategoryIdWithBrands(request.categoryId);
             if(category == null) 
                 throw new NotFoundException(nameof(Category), request.categoryId.ToString());
 

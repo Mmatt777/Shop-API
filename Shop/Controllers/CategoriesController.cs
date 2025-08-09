@@ -14,6 +14,7 @@ namespace Shop.Controllers
     public class CategoriesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAll()
         {
             var categories = await mediator.Send(new GetAllCategoriesQuery());
@@ -22,6 +23,7 @@ namespace Shop.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<SubCategoryDTO>> GetCategoryByIdWithsubCategory([FromRoute]int id)
         {
             var category = await mediator.Send(new GetCategoryByIdWithsubCategoryQuery(id));

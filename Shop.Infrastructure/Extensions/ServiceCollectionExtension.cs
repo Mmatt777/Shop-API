@@ -31,6 +31,9 @@ namespace Shop.Infrastructure.Extensions
             services.AddScoped<IShopSeeder, ShopSeeder>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             services.AddScoped<ISubCategoriesRepository, SubCategoryRepository>();
+            services.AddScoped<IBrandsRepository, BrandsRepository>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+
             services.AddAuthorizationBuilder()
                 .AddPolicy(PolitycyNames.HasCountry, builder => builder.RequireClaim(AppClaimTypes.Country))
                 .AddPolicy(PolitycyNames.Over18YearsOld, builder => builder.AddRequirements(new MinimumAgeRequirement(18)));
