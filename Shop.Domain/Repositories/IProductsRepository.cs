@@ -11,6 +11,7 @@ namespace Shop.Domain.Repositories
     {
         Task<Category> GetAllProductsForCategory(int id);
         Task<Category> GetAllProductsForCategoryWithSubCategory(int Id);
+        Task<Category> GetAllProductForCategoryWithSubCategoryAndBrand(int Id);
 
     }
 }

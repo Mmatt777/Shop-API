@@ -25,5 +25,16 @@ namespace Shop.Infrastructure.Repositories
 
             return products;
         }
+
+        public async Task<Category> GetAllProductForCategoryWithSubCategoryAndBrand(int Id)
+        {
+            var products = await dbContext.Categories
+                .Include(c => c.SubCategories)
+                .Include(c => c.Brands)
+                .Include(c => c.Products)
+                .FirstOrDefaultAsync(c => c.Id == Id);
+
+            return products;
+        }
     }
 }
