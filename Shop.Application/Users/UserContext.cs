@@ -12,7 +12,7 @@ namespace Shop.Application.Users
     {
         public CurrentUser? GetCurrentUser()
         {
-            var user = httpContextAccessor.HttpContext!.User;
+            var user = httpContextAccessor?.HttpContext?.User;
 
             if (user == null)
             {

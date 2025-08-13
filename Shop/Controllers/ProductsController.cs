@@ -11,7 +11,7 @@ namespace Shop.API.Controllers
     [ApiController]
     [Authorize]
     [Route("api/category/{categoryId}/")]
-    public class ProductController(IMediator mediator) : ControllerBase
+    public class ProductsController(IMediator mediator) : ControllerBase
     {
         [HttpGet("products")]
         [AllowAnonymous]
