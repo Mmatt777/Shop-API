@@ -36,5 +36,13 @@ namespace Shop.Infrastructure.Repositories
 
             return products;
         }
+
+        public async Task<Guid> CreateProduct(Product product)
+        {
+            dbContext.Products.Add(product);
+            await dbContext.SaveChangesAsync();
+
+            return product.Id;
+        }
     }
 }

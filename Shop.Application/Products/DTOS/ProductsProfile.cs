@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Shop.Application.Products.Commands.CreateProduct;
 using Shop.Domain.Entities;
 
 
@@ -9,6 +10,7 @@ namespace Shop.Application.Products.DTOS
         public ProductsProfile()
         {
             CreateMap<Product, ProductDTO>();
+            CreateMap<CreateProductForCategoryIdAndSubcateoryIdWithBrandIdCommand, Product>();
         }
     }
 }

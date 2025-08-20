@@ -14,6 +14,7 @@ namespace Shop.Application.Users.Tests
         public void IsInRole_WithMatchingRole_ShouldReturnTrue(string nameRole)
         {
             // arrange
+
             var currentUser = new CurrentUser("1", "test@test.com", [IdentityRoles.Admin, IdentityRoles.User], null, null);
 
             // act 
@@ -26,7 +27,7 @@ namespace Shop.Application.Users.Tests
         }
         
         [Fact()]
-        public void IsInRole_WithNoMatchingRole_ShouldReturnTrue()
+        public void IsInRole_WithNoMatchingRole_ShouldReturnFalse()
         {
             // arrange
             var currentUser = new CurrentUser("1", "test@test.com", [IdentityRoles.Admin, IdentityRoles.User], null, null);
