@@ -44,5 +44,11 @@ namespace Shop.Infrastructure.Repositories
 
             return product.Id;
         }
+
+        public async Task DeleteProduct(Product product)
+        {
+            dbContext.Remove(product);
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

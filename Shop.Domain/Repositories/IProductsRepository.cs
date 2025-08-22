@@ -1,9 +1,4 @@
 ﻿using Shop.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Domain.Repositories
 {
@@ -13,6 +8,6 @@ namespace Shop.Domain.Repositories
         Task<Category> GetAllProductsForCategoryWithSubCategory(int Id);
         Task<Category> GetAllProductForCategoryWithSubCategoryAndBrand(int Id);
         Task<Guid> CreateProduct(Product product);
-
+        Task DeleteProduct(Product product);
     }
 }

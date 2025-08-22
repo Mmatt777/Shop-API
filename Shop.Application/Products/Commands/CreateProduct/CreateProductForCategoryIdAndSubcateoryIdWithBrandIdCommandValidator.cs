@@ -14,7 +14,7 @@ namespace Shop.Application.Products.Commands.CreateProduct
         {
             RuleFor(p => p.Name).NotEmpty().Length(3, 99);
             RuleFor(p => p.Cost).NotEmpty().GreaterThan(0.0f);
-            RuleFor(p => p.Description).NotEmpty().Length(100, 500);
+            RuleFor(p => p.Description).NotEmpty().Length(10, 500);
             RuleFor(p => p.StockQuantity).NotEmpty().GreaterThan(0);
             RuleFor(p => p.CategoryId).NotEmpty();
             RuleFor(p => p.SubCategoryId).NotEmpty();

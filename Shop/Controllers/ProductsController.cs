@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Products.Commands.CreateProduct;
+using Shop.Application.Products.Commands.DeleteProduct;
 using Shop.Application.Products.DTOS;
 using Shop.Application.Products.Queries.GetAllProductForCategoryQuery;
 using Shop.Application.Products.Queries.GetAllProductForCategoryWithSubCategoryAndBrand;
@@ -26,7 +27,7 @@ namespace Shop.API.Controllers
 
         [HttpGet("subcategory/{subCategoryId}/products")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProductsForCategoryWithSubCategory([FromRoute] int categoryId, 
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProductsForCategoryWithSubCategory([FromRoute] int categoryId,
             [FromRoute] int subCategoryId)
         {
             var products = await mediator.Send(new GetAllProductsForCategoryWithSubCategoryQuery(categoryId, subCategoryId));
@@ -45,16 +46,23 @@ namespace Shop.API.Controllers
         [HttpPost("subcategory/{subCategoryId}/brand/{brandId}")]
         [Authorize(Roles = IdentityRoles.Admin)]
         public async Task<IActionResult> CreateProduct([FromRoute] int categoryId,
-            [FromRoute]int subCategoryId,
-            [FromRoute]int brandId,
-            CreateProductForCategoryIdAndSubcateoryIdWithBrandIdCommand command 
-            )
+            [FromRoute] int subCategoryId,
+            [FromRoute] int brandId,
+            CreateProductForCategoryIdAndSubcateoryIdWithBrandIdCommand command)
         {
             command.CategoryId = categoryId;
             command.SubCategoryId = subCategoryId;
             command.BrandId = brandId;
             var product = await mediator.Send(command);
             return Ok();
+        }
+
+        [HttpDelete("{productId}")]
+        [Authorize(Roles = IdentityRoles.Admin)]
+        public async Task<IActionResult> DeteleProductWithId([FromRoute] int categoryId, [FromRoute] Guid productId)
+        {
+            await mediator.Send(new DeleteProductForCategoryCommand(categoryId, productId));
+            return NoContent();
         }
     }
 }
