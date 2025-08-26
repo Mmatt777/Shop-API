@@ -7,6 +7,7 @@ using Shop.Application.Products.DTOS;
 using Shop.Application.Products.Queries.GetAllProductForCategoryQuery;
 using Shop.Application.Products.Queries.GetAllProductForCategoryWithSubCategoryAndBrand;
 using Shop.Application.Products.Queries.GetAllProductsForCategoryWithSubCategory;
+using Shop.Application.Products.Queries.GetProductByIdForCategory;
 using Shop.Domain.Constants;
 using Shop.Domain.Entities;
 
@@ -23,6 +24,14 @@ namespace Shop.API.Controllers
         {
             var products = await mediator.Send(new GetAllProductsForCategoryQuery(categoryId));
             return Ok(products);
+        }
+
+        [HttpGet("{productId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductDTO>> GetProductByIdForCategory([FromRoute] int categoryId, [FromRoute] Guid productId)
+        {
+            var product = await mediator.Send(new GetProductByIdForCategoryQuery(categoryId, productId));
+            return Ok(product);
         }
 
         [HttpGet("subcategory/{subCategoryId}/products")]

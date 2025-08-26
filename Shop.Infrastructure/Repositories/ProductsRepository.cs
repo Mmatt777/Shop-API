@@ -16,6 +16,15 @@ namespace Shop.Infrastructure.Repositories
             return products;
         }
 
+        public async Task<Category> GetProductByIdForCategory(int Id)
+        {
+            var product = await dbContext.Categories
+                .Include(p => p.Products)
+                .FirstOrDefaultAsync(p => p.Id == Id);
+
+            return product;
+        }
+
         public async Task<Category> GetAllProductsForCategoryWithSubCategory(int Id)
         {
             var products = await dbContext.Categories
